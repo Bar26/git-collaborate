@@ -16,7 +16,7 @@ function onInit() {
                 const locationName = prompt('Location name')
                 if (!locationName) return
             
-                // addLocation(location, locationName)
+                onAddMarker(location, locationName)
                 // placeMarkerAndPanTo(location, gMap)
                 // renderFavoriteLocations()
               })
@@ -39,9 +39,17 @@ function getPosition() {
     })
 }
 
-function onAddMarker() {
-    console.log('Adding a marker');
-    mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+function onAddMarker(loc,name) {
+    if(!name){
+        console.log('Adding a marker');
+        mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
+    }
+    else{
+        console.log(loc);
+        mapService.addMarker({ lat:loc.lat , lng:loc.lng});
+        locService.savePlace({lat:loc.lat , lng:loc.lng},name)
+        // mapService.addMarker()
+    }
 }
 
 function onGetLocs() {
@@ -66,6 +74,11 @@ function onGetUserPos() {
 function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
+}
+
+
+function renderWheather(loc) {
+
 }
 
 
