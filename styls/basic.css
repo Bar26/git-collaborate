@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: coral;
+}
+
+button{
+    margin: 0;
+    padding: 6px;
+    background-color: gray;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+
+input{
+    height: 30px;
+}
+
+button:hover{
+    color: rgb(244, 105, 18);
+}
+ 
+h1,h2,h3,h4,h5{
+    margin: 0;
+    padding: 0;
+}

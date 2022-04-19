@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelTip</title>
+    <link rel="stylesheet" href="styls/main.css">
 </head>
 <body>
-    <h1>TravelTip Starter</h1>
-    <div id="map" style="width: 100%; height: 400px;"></div>
-    <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button>
-    <button onclick="onGetUserPos()" class="btn-user-pos">Get User Position</button>
-    <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button>
-    <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button>
+    <header class="main-header flex align-center space-between">
+        <h1 class="logo">TravelTip</h1>
+        <div class="btn-container flex">
+            <form class="search" onsubmit="">
+                <input type="search" name="search-location" placeholder="Enter Location"></input>
+                <button class="go">GO</button>
+            </form>
+            <button onclick="onGetUserPos()" class="btn-user-pos">My Location</button>
+       </div>     
+   </header>
 
-    <p>You are at: <span class="user-pos"></span></p>
-    <p>Locations: <span class="locs"></span></p>
+    <section class="curr-location flex space-between align-center">
+        <section class="location-txt flex column">
+            <h2 class="location">Location: <span></span></h2>
+            <h2 >you are at:<span class="user-pos"></span></h2>
+        </section>
+        <button class="copy-location flex align-center">Copy Loction</button>
+    </section>
+    
+    <!-- <button onclick="onAddMarker()" class="btn-add-marker">Add Marker Speific Location</button> -->
+    
+    <!-- <button onclick="onGetLocs()" class="btn-get-locs">Get Locations</button> -->
+    <!-- <button onclick="onPanTo()"class="btn-pan">Pan Map to Tokyo</button> -->
+    
+    <main class="main-conatiner flex space-between">
+        <section class="left flex column space-between">
+            <div class="weather">weather today</div>
+            <div class="location-list-container">location-list-container</div>
+        </section>
+        <div id="map" style="width: 60%; height: 600px;"></div>
+    </main>
+
+    <!-- <p>You are at: <span class="user-pos"></span></p> -->
+    <!-- <p>Locations: <span class="locs"></span></p> -->
     
 
     <script type="module" src="js/app.controller.js"></script>

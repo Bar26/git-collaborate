@@ -1,0 +1,17 @@
+.main-header{
+    height: 70px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.main-header .logo{
+    font-size: 2.85rem;
+}
+
+.main-header .btn-container{
+    gap:5px;
+}
+
+.main-header input{
+    margin: 0;
+}

@@ -1,0 +1,17 @@
+.curr-location{
+    height: 70px;
+    padding: 10px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+.curr-location .copy-location{
+    padding: 30px;
+    width: 160px;
+    font-size: 1rem;
+    
+}
+
+.curr-location .location-txt{
+    gap: 20px;
+}

@@ -1,0 +1,23 @@
+.main-conatiner{
+    width: 100%;
+    padding: 10px;
+    gap: 50px;
+}
+
+.main-conatiner .left{
+    width: 40%;
+    gap:20px;
+}
+
+.main-conatiner .left .weather{
+    background-color: white;
+    flex-basis: 50%;
+    
+}
+
+.main-conatiner .left .location-list-container{
+    background-color: white;
+    flex-basis: 50%;
+
+}
+
