@@ -6,22 +6,23 @@ window.onAddMarker = onAddMarker;
 window.onPanTo = onPanTo;
 window.onGetLocs = onGetLocs;
 window.onGetUserPos = onGetUserPos;
+window.onSearch = onSearch
 
 function onInit() {
     mapService.initMap()
-        .then((map)=>{
+        .then((map) => {
             map.addListener('click', (mapsMouseEvent) => {
                 // console.log(mapsMouseEvent)
                 const location = mapsMouseEvent.latLng.toJSON()
                 const locationName = prompt('Location name')
                 if (!locationName) return
                 onAddMarker(location, locationName)
-       
-              })
+
+            })
         });
-        var map = mapService.getMap();
-    console.log(map)
-   
+    // var map = mapService.getMap();
+    // console.log(map)
+
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -32,15 +33,23 @@ function getPosition() {
     })
 }
 
-function onAddMarker(loc,name) {
-    if(!name){
+function onAddMarker(loc, name) {
+    if (!name) {
         console.log('Adding a marker');
         mapService.addMarker({ lat: 32.0749831, lng: 34.9120554 });
     }
-    else{
-        console.log(loc);
-        mapService.addMarker({ lat:loc.lat , lng:loc.lng});
-        locService.savePlace({lat:loc.lat , lng:loc.lng},name)
+    else {
+        var isLocInArr = false
+        var arrLocs = locService.myGetLocs();
+        console.log(arrLocs);
+        arrLocs.forEach(loc => {
+            if (name === loc.name) isLocInArr = true;
+        })
+        console.log(isLocInArr)
+        if (!isLocInArr) {
+            mapService.addMarker({ lat: loc.lat, lng: loc.lng });
+            locService.savePlace({ lat: loc.lat, lng: loc.lng }, name)
+        }
     }
 }
 
@@ -58,6 +67,8 @@ function onGetUserPos() {
             console.log('User position is:', pos.coords);
             document.querySelector('.user-pos').innerText =
                 `Latitude: ${pos.coords.latitude} - Longitude: ${pos.coords.longitude}`
+            mapService.setMap({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+            onAddMarker({ lat: pos.coords.latitude, lng: pos.coords.longitude }, 'Your Location')
         })
         .catch(err => {
             console.log('err!!!', err);
@@ -72,6 +83,26 @@ function onPanTo() {
 function renderWheather(loc) {
 
 }
+
+
+
+function onSearch(ev) {
+    ev.preventDefault()
+    const address = document.querySelector('input').value
+    locService.search(address)
+        .then(res=>{
+            var lat = res.results[0].geometry.location.lat();
+            var lng = res.results[0].geometry.location.lng();
+            return {lat:lat,lng:lng};
+        })
+        .then(res=>{
+            mapService.setMap(res);
+            onAddMarker(res,address)
+        })
+    // console.log(newLoc)
+    // if (newLoc) mapService.setMap(newLoc)
+}
+
 
 
 // gMap.addListener('click', (mapsMouseEvent) => {

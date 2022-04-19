@@ -4,7 +4,8 @@ export const mapService = {
     initMap,
     addMarker,
     panTo,
-    getMap
+    getMap,
+    setMap
 }
 
 var gMap;
@@ -58,4 +59,11 @@ function _connectGoogleApi() {
 
 function getMap(){
     return gMap;
+}
+
+function setMap(loc) {
+    // var map = mapService.getMap();
+    var position = new google.maps.LatLng(loc.lat, loc.lng);
+    // console.log(position);
+    gMap.setCenter(position);
 }
