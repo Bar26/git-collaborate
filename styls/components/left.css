@@ -21,3 +21,21 @@
 
 }
 
+.main-conatiner .left .location-list-container .location-item{
+    padding: 15px;
+    margin-bottom: 10px;
+
+}
+
+.main-conatiner .left .location-list-container .location-item>*{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 1px rgb(218, 211, 211) solid;
+    color: rgb(97, 93, 93);
+}
+
+
+.main-conatiner .left .location-list-container .location-item .name{
+    font-size: xx-large;
+    margin-bottom: 10px;
+}

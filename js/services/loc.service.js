@@ -2,7 +2,8 @@ import { storageService } from './storage.service.js'
 
 export const locService = {
     getLocs,
-    savePlace
+    savePlace,
+    search
 }
 
 const KEY_LOC = 'loc-DB'
@@ -38,13 +39,13 @@ function savePlace(loc, name) {
     }
     getWheater(loc)
         .then(res => {
-            mark.weater=res;
+            mark.weather = res;
         })
-    setTimeout(()=>{
+    setTimeout(() => {
         gFavLocs.push(mark);
         storageService.save(KEY_LOC, gFavLocs)
-        
-    },1000)
+
+    }, 1000)
 }
 
 // function createLoc(lat lng,name,){
@@ -61,6 +62,25 @@ function getWheater(loc) {
             return currTemp;
         })
 }
+
+function search(address) {
+    const geocoder = new google.maps.Geocoder();
+    console.log(geocoder)
+    geocoder.geocode({ address: address }, (results, status) => {
+        console.log(address,results)
+        if (status === google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            return {latitude}
+       
+        } else {
+            alert("Geocode error: " + status);
+        }
+    });
+}
+
+
+
 
 function getDate() {
     let current = new Date();
