@@ -3,6 +3,10 @@ import { storageService } from './storage.service.js'
 export const locService = {
     getLocs,
     savePlace,
+<<<<<<< HEAD
+=======
+    myGetLocs,
+>>>>>>> 9355389512cd99e8492383aae70968b50e03388f
     search
 }
 
@@ -53,7 +57,7 @@ function savePlace(loc, name) {
 // }
 
 function getWheater(loc) {
-    console.log(loc)
+    // console.log(loc)
     var currTemp
     return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lng}&APPID=${API_KEY}`)
         .then(res => res.data.main)
@@ -90,3 +94,29 @@ function getDate() {
     // console.log(dateTime);
     return dateTime;
 }
+
+function myGetLocs(){
+    return gFavLocs;
+}
+
+function search(address) {
+    let latitude;
+    let longitude;
+    const geocoder = new google.maps.Geocoder();
+    // console.log(geocoder)
+    return geocoder.geocode({ address: address }, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat();
+            longitude = results[0].geometry.location.lng();
+            // console.log(latitude,longitude)
+            return {lat:latitude,lng:longitude}
+        } else {
+            alert("Geocode error: " + status);
+            return null
+        }
+    });
+    
+    // console.log(d)
+}
+
+
