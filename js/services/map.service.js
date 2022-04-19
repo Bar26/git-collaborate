@@ -57,6 +57,5 @@ function _connectGoogleApi() {
 }
 
 function getMap(){
-    console.log(gMap);
     return gMap;
 }

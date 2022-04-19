@@ -15,17 +15,10 @@ function onInit() {
                 const location = mapsMouseEvent.latLng.toJSON()
                 const locationName = prompt('Location name')
                 if (!locationName) return
-            
                 onAddMarker(location, locationName)
-                // placeMarkerAndPanTo(location, gMap)
-                // renderFavoriteLocations()
+       
               })
         });
-        // .catch(() => console.log('Error: cannot init map'))
-        // .then(()=>{
-// 
-        // })
-    
         var map = mapService.getMap();
     console.log(map)
    
@@ -48,7 +41,6 @@ function onAddMarker(loc,name) {
         console.log(loc);
         mapService.addMarker({ lat:loc.lat , lng:loc.lng});
         locService.savePlace({lat:loc.lat , lng:loc.lng},name)
-        // mapService.addMarker()
     }
 }
 

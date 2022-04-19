@@ -25,22 +25,26 @@ function getLocs() {
 }
 
 function savePlace(loc, name) {
+    // console.log(tempWeater)
     var mark = {
         loc: {
             lat: loc.lat,
             lng: loc.lng,
         },
         createdAt: getDate(),
-        updatedAt: getDate(),
+        updatedAt: getDate(),////////PROB!!
         name,
-        id: gFavLocs.length
+        id: gFavLocs.length,
     }
     getWheater(loc)
-     .then(res=>{
-        mark.weather=res;
-    })
-    gFavLocs.push(mark);
-    storageService.save(KEY_LOC, gFavLocs)
+        .then(res => {
+            mark.weater=res;
+        })
+    setTimeout(()=>{
+        gFavLocs.push(mark);
+        storageService.save(KEY_LOC, gFavLocs)
+        
+    },1000)
 }
 
 // function createLoc(lat lng,name,){
@@ -48,6 +52,7 @@ function savePlace(loc, name) {
 // }
 
 function getWheater(loc) {
+    console.log(loc)
     var currTemp
     return axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lng}&APPID=${API_KEY}`)
         .then(res => res.data.main)
