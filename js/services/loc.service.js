@@ -2,6 +2,8 @@ export const locService = {
     getLocs
 }
 
+const KEY_LOC='loc-DB'
+var gFavLocs
 
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
@@ -16,4 +18,6 @@ function getLocs() {
     });
 }
 
+// function createLoc(lat lng,name,){
 
+// }

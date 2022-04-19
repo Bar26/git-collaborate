@@ -1,15 +1,15 @@
-
+import { storageService } from './storage.service.js'
 
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    getMap
 }
 
 var gMap;
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
-    console.log('InitMap');
     return _connectGoogleApi()
         .then(() => {
             console.log('google available');
@@ -19,8 +19,9 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 zoom: 15
             })
             console.log('Map!', gMap);
+            return gMap
         })
-}
+    }   
 
 function addMarker(loc) {
     var marker = new google.maps.Marker({
@@ -50,4 +51,9 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve;
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function getMap(){
+    console.log(gMap);
+    return gMap;
 }

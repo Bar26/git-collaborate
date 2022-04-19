@@ -9,10 +9,26 @@ window.onGetUserPos = onGetUserPos;
 
 function onInit() {
     mapService.initMap()
-        .then(() => {
-            console.log('Map is ready');
-        })
-        .catch(() => console.log('Error: cannot init map'));
+        .then((map)=>{
+            map.addListener('click', (mapsMouseEvent) => {
+                // console.log(mapsMouseEvent)
+                const location = mapsMouseEvent.latLng.toJSON()
+                const locationName = prompt('Location name')
+                if (!locationName) return
+            
+                // addLocation(location, locationName)
+                // placeMarkerAndPanTo(location, gMap)
+                // renderFavoriteLocations()
+              })
+        });
+        // .catch(() => console.log('Error: cannot init map'))
+        // .then(()=>{
+// 
+        // })
+    
+        var map = mapService.getMap();
+    console.log(map)
+   
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -51,3 +67,15 @@ function onPanTo() {
     console.log('Panning the Map');
     mapService.panTo(35.6895, 139.6917);
 }
+
+
+// gMap.addListener('click', (mapsMouseEvent) => {
+//     console.log(mapsMouseEvent)
+//     const location = mapsMouseEvent.latLng.toJSON()
+//     const locationName = prompt('Location name')
+//     if (!locationName) return
+
+//     // addLocation(location, locationName)
+//     // placeMarkerAndPanTo(location, gMap)
+//     // renderFavoriteLocations()
+//   })
